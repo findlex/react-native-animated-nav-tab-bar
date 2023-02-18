@@ -1,14 +1,14 @@
 import { Animated } from "react-native";
+import { initialWindowMetrics } from "react-native-safe-area-context";
 import Styled, { css } from "styled-components/native";
 import { DotSize, TabButtonLayout, TabElementDisplayOptions } from "./types";
-import { isIphoneX } from "./utils/iPhoneX";
 
 // Config
-const BOTTOM_PADDING = 20;
-const BOTTOM_PADDING_IPHONE_X = 30;
-
 const floatingMarginBottom = css`
-  margin-bottom: ${isIphoneX() ? BOTTOM_PADDING_IPHONE_X : BOTTOM_PADDING}px;
+  margin-bottom: ${initialWindowMetrics?.insets.bottom}px;
+`;
+const floatingMarginTop = css`
+  margin-top: ${initialWindowMetrics?.insets.top}px;
 `;
 const floatingMarginHorizontal = css`
   margin-horizontal: 20px;
@@ -31,14 +31,15 @@ const BottomTabBarWrapper = Styled.View<IBottomTabBarWrapper>`
 	flex-direction: row;
 	${(p) => p.floating && floatingMarginHorizontal};
     elevation: 2;
-	${(p) => p.floating && floatingMarginBottom};
+	${(p) => p.floating && (p.topPositioned ? floatingMarginTop : floatingMarginBottom)};
+  ${(p) => p.topPositioned && floatingMarginTop};
 	${(p) => p.floating && floatingRoundCorner};
-  padding-bottom: ${(p) =>
-    p.floating
-      ? p.bottomPadding
-      : isIphoneX()
-        ? BOTTOM_PADDING_IPHONE_X + p.bottomPadding
-        : p.bottomPadding}px;
+  ${(p) => p.topPositioned
+    ? `padding-bottom: ${p.bottomPadding}px`
+    : p.floating
+      ? `padding-bottom: ${p.bottomPadding}px`
+      : `padding-bottom: ${initialWindowMetrics?.insets.bottom + p.bottomPadding}px`
+  }
   padding-top: ${(p) => p.topPadding}px;
   padding-horizontal: ${(p) => p.horizontalPadding}px;
   background-color: ${(p) => p.tabBarBackground};

@@ -66,6 +66,8 @@ export default ({
     tabButtonLayout,
   } = appearance;
 
+  const topPositioned = Platform.OS === 'ios' ? appearance.topPositioned : undefined
+
   const {
     activeTintColor,
     inactiveTintColor,
@@ -370,7 +372,7 @@ export default ({
       height: "100%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "flex-end",
+      justifyContent: topPositioned ? "flex-start" : "flex-end",
       position: "absolute",
     }
   });
@@ -424,7 +426,7 @@ export default ({
       </View>
       {/* Tab Bar */}
       {tabBarVisible && (
-        <View pointerEvents={"box-none"} style={floating && overlayStyle}>
+        <View pointerEvents={"box-none"} style={(floating || topPositioned) && overlayStyle}>
           <BottomTabBarWrapper
             style={tabStyle}
             floating={floating}
@@ -433,6 +435,7 @@ export default ({
             horizontalPadding={horizontalPadding}
             tabBarBackground={tabBarBackground}
             shadow={shadow}
+            topPositioned={topPositioned}
           >
             {state.routes.map(createTab)}
             {/* Animated Dot / Background */}

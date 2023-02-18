@@ -30,6 +30,8 @@ export enum TabElementDisplayOptions {
     whenInactiveShow: TabElementDisplayOptions;
     dotSize: DotSize;
     shadow: boolean;
-    tabButtonLayout: TabButtonLayout 
+    tabButtonLayout: TabButtonLayout;
+    // iOS only: position the nav bar at the top
+    topPositioned?: boolean;
   }
   
