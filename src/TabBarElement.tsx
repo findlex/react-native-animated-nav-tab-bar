@@ -66,6 +66,9 @@ export default ({
     tabButtonLayout,
   } = appearance;
 
+  const forcedWidth = floating ? appearance.forcedWidth : 1
+  const topPositioned = Platform.OS === 'ios' ? appearance.topPositioned : undefined
+
   const {
     activeTintColor,
     inactiveTintColor,
@@ -294,8 +297,8 @@ export default ({
      */
     const onLayout = (e: any) => {
       if (focused) {
-        setPos(e.nativeEvent.layout.x);
-        setWidth(e.nativeEvent.layout.width);
+        setPos(e.nativeEvent.layout.x + e.nativeEvent.layout.width/2 * (forcedWidth ? 1 - forcedWidth : 0));
+        setWidth(e.nativeEvent.layout.width * (forcedWidth ? forcedWidth : 1));
         setHeight(e.nativeEvent.layout.height);
       }
     };
@@ -370,8 +373,9 @@ export default ({
       height: "100%",
       display: "flex",
       flexDirection: "column",
-      justifyContent: "flex-end",
+      justifyContent: topPositioned ? "flex-start" : "flex-end",
       position: "absolute",
+      alignItems: 'center'
     }
   });
 
@@ -424,7 +428,7 @@ export default ({
       </View>
       {/* Tab Bar */}
       {tabBarVisible && (
-        <View pointerEvents={"box-none"} style={floating && overlayStyle}>
+        <View pointerEvents={"box-none"} style={(floating || topPositioned) && overlayStyle}>
           <BottomTabBarWrapper
             style={tabStyle}
             floating={floating}
@@ -433,6 +437,8 @@ export default ({
             horizontalPadding={horizontalPadding}
             tabBarBackground={tabBarBackground}
             shadow={shadow}
+            topPositioned={topPositioned}
+            forcedWidth={forcedWidth}
           >
             {state.routes.map(createTab)}
             {/* Animated Dot / Background */}
