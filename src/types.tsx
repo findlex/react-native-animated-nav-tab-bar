@@ -33,5 +33,7 @@ export enum TabElementDisplayOptions {
     tabButtonLayout: TabButtonLayout;
     // iOS only: position the nav bar at the top
     topPositioned?: boolean;
+    // change the width when floating
+    forcedWidth?: number
   }
   

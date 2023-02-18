@@ -29,6 +29,7 @@ interface IBottomTabBarWrapper {
 
 const BottomTabBarWrapper = Styled.View<IBottomTabBarWrapper>`
 	flex-direction: row;
+  ${(p) => p.floating && !!p.forcedWidth && `width: ${p.forcedWidth*100}%`};
 	${(p) => p.floating && floatingMarginHorizontal};
     elevation: 2;
 	${(p) => p.floating && (p.topPositioned ? floatingMarginTop : floatingMarginBottom)};
