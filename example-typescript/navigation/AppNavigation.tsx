@@ -79,7 +79,7 @@ export default () => (
 			whenActiveShow: TabElementDisplayOptions.ICON_ONLY,
 			dotSize: DotSize.LARGE,
 			topPositioned: true,
-			forcedWidth: 0.8,
+			forcedWidth: 0.75
 		}}
 	>
 		<Tabs.Screen
