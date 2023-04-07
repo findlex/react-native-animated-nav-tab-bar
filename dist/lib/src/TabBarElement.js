@@ -222,8 +222,8 @@ export default (function (_a) {
          */
         var onLayout = function (e) {
             if (focused) {
-                setPos(e.nativeEvent.layout.x + e.nativeEvent.layout.width / 2 * (forcedWidth ? 1 - forcedWidth : 0));
-                setWidth(e.nativeEvent.layout.width * (forcedWidth ? forcedWidth : 1));
+                setPos(e.nativeEvent.layout.x);
+                setWidth(e.nativeEvent.layout.width);
                 setHeight(e.nativeEvent.layout.height);
             }
         };

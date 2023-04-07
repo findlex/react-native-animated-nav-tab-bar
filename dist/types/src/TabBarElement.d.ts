@@ -9,7 +9,6 @@ interface TabBarElementProps {
     tabBarOptions?: any;
     lazy?: boolean;
 }
-declare const _default: ({ state, navigation, descriptors, appearance, tabBarOptions, lazy, }: TabBarElementProps) => JSX.Element;
 /**
  * @name TabBarElement
  * React Navigation v5 custom navigation (bottom tab bar) builder with an
@@ -23,4 +22,5 @@ declare const _default: ({ state, navigation, descriptors, appearance, tabBarOpt
  *
  * @return function that creates the custom tab bar
  */
+declare const _default: ({ state, navigation, descriptors, appearance, tabBarOptions, lazy, }: TabBarElementProps) => JSX.Element;
 export default _default;

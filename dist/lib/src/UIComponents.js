@@ -5,7 +5,7 @@ var __makeTemplateObject = (this && this.__makeTemplateObject) || function (cook
 import { Animated } from "react-native";
 import { initialWindowMetrics } from "react-native-safe-area-context";
 import Styled, { css } from "styled-components/native";
-import { DotSize, TabButtonLayout, TabElementDisplayOptions } from "./types";
+import { TabButtonLayout, TabElementDisplayOptions } from "./types";
 // Config
 var floatingMarginBottom = css(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  margin-bottom: ", "px;\n"], ["\n  margin-bottom: ", "px;\n"])), initialWindowMetrics === null || initialWindowMetrics === void 0 ? void 0 : initialWindowMetrics.insets.bottom);
 var floatingMarginTop = css(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  margin-top: ", "px;\n"], ["\n  margin-top: ", "px;\n"])), initialWindowMetrics === null || initialWindowMetrics === void 0 ? void 0 : initialWindowMetrics.insets.top);
@@ -16,18 +16,6 @@ var BottomTabBarWrapper = Styled.View(templateObject_5 || (templateObject_5 = __
     : p.floating
         ? "padding-bottom: ".concat(p.bottomPadding, "px")
         : "padding-bottom: ".concat((initialWindowMetrics === null || initialWindowMetrics === void 0 ? void 0 : initialWindowMetrics.insets.bottom) + p.bottomPadding, "px"); }, function (p) { return p.topPadding; }, function (p) { return p.horizontalPadding; }, function (p) { return p.tabBarBackground; }, function (p) { return p.shadow && SHADOW; });
-var calculateDotSize = function (size) {
-    switch (size) {
-        case DotSize.SMALL:
-            return 40;
-        case DotSize.MEDIUM:
-            return 10;
-        case DotSize.LARGE:
-            return 5;
-        default:
-            return 10;
-    }
-};
 var TabButton = Styled.TouchableOpacity(templateObject_6 || (templateObject_6 = __makeTemplateObject(["\n\tflex: 1;\n\tflex-direction: ", ";\n\tjustify-content: center;\n\talign-items: center;\n\tborder-radius: 100px;\n\tpadding-vertical: 10px;\n\tflex-grow: ", ";\n"], ["\n\tflex: 1;\n\tflex-direction: ", ";\n\tjustify-content: center;\n\talign-items: center;\n\tborder-radius: 100px;\n\tpadding-vertical: 10px;\n\tflex-grow: ", ";\n"])), function (p) {
     return p.tabButtonLayout == TabButtonLayout.VERTICAL
         ? "column"
@@ -35,7 +23,7 @@ var TabButton = Styled.TouchableOpacity(templateObject_6 || (templateObject_6 = 
             ? "row"
             : "row";
 }, function (p) {
-    return p.focused ? p.labelLength / calculateDotSize(p.dotSize) + 1 : 1;
+    return p.focused ? 1.01 : 1;
 });
 var Label = Styled(Animated.Text)(templateObject_7 || (templateObject_7 = __makeTemplateObject(["\n\tfontSize: ", "px;\n\tcolor: ", ";\n\tmargin-left: ", "px;\n"], ["\n\tfontSize: ", "px;\n\tcolor: ", ";\n\tmargin-left: ", "px;\n"])), function (p) {
     return p.whenInactiveShow == TabElementDisplayOptions.BOTH || p.whenActiveShow == TabElementDisplayOptions.BOTH ? "14" : "17";

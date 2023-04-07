@@ -48,18 +48,18 @@ const BottomTabBarWrapper = Styled.View<IBottomTabBarWrapper>`
 
   `;
 
-const calculateDotSize = (size: DotSize) => {
-  switch (size) {
-    case DotSize.SMALL:
-      return 40;
-    case DotSize.MEDIUM:
-      return 10;
-    case DotSize.LARGE:
-      return 5;
-    default:
-      return 10;
-  }
-};
+// const calculateDotSize = (size: DotSize) => {
+//   switch (size) {
+//     case DotSize.SMALL:
+//       return 40;
+//     case DotSize.MEDIUM:
+//       return 10;
+//     case DotSize.LARGE:
+//       return 5;
+//     default:
+//       return 10;
+//   }
+// };
 
 interface ITabButton {
   tabButtonLayout: TabButtonLayout;
@@ -83,7 +83,7 @@ const TabButton = Styled.TouchableOpacity<ITabButton>`
 	border-radius: 100px;
 	padding-vertical: 10px;
 	flex-grow: ${(p) =>
-    p.focused ? p.labelLength / calculateDotSize(p.dotSize) + 1 : 1};
+    p.focused ? 1.01 : 1};
 `;
 
 interface ILabelProps {
